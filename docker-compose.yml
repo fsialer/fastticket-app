@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  fastticket-app:
+    build: .
+    ports:
+      - "3000:80"
+    environment:
+      - API_URL=http://localhost:8080/v1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
