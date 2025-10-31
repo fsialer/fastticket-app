@@ -1,0 +1,83 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-main-layout',
+  imports: [RouterOutlet],
+  template: `
+    <div class="main-layout">
+      <header class="header">
+        <div class="container">
+          <h1 class="logo">🎫 FastTicket</h1>
+          <div class="header-actions">
+            <button class="btn-secondary">Sign In</button>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="container">
+          <router-outlet></router-outlet>
+        </div>
+      </main>
+    </div>
+  `,
+  styles: [`
+    .main-layout {
+      min-height: 100vh;
+      background: linear-gradient(to right, #7c3aed, #f43f5e);
+      font-family: 'Poppins', sans-serif;
+    }
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+    }
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4a5568;
+      margin: 0;
+      letter-spacing: -1px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+    }
+    .btn-secondary {
+      font-family: 'Poppins', sans-serif;
+      background: transparent;
+      border: 2px solid #667eea;
+      color: #667eea;
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-1px);
+    }
+    .main {
+      padding: 3rem 0;
+    }
+  `]
+})
+export class MainLayoutComponent {}

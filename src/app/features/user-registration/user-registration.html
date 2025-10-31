@@ -1,0 +1,98 @@
+<div class="registration-container">
+  <div class="registration-card">
+    <div class="card-header">
+      <h1 class="title">Create Account</h1>
+      <p class="subtitle">Join FastTicket for response ask</p>
+    </div>
+    
+    <div *ngIf="showSuccess" class="success-message">
+      <div class="success-content">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>{{ successMessage }}</span>
+      </div>
+    </div>
+    
+    <div *ngIf="showError" class="error-message">
+      <div class="error-content">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>{{ errorMessage }}</span>
+      </div>
+    </div>
+    
+    <form (ngSubmit)="registerUser()" #registrationForm="ngForm" class="registration-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="label">First Name</label>
+          <input type="text" [(ngModel)]="user.name" name="name" #name="ngModel" class="input" 
+                 [class.error]="name.invalid && name.touched" 
+                 placeholder="Enter your first name" required minlength="3">
+          <div *ngIf="name.invalid && name.touched" class="validation-error">
+            <span *ngIf="name.errors?.['required']">First name is required</span>
+            <span *ngIf="name.errors?.['minlength']">First name must be at least 3 characters</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label">Last Name</label>
+          <input type="text" [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel" class="input" 
+                 [class.error]="lastName.invalid && lastName.touched" 
+                 placeholder="Enter your last name" required minlength="3">
+          <div *ngIf="lastName.invalid && lastName.touched" class="validation-error">
+            <span *ngIf="lastName.errors?.['required']">Last name is required</span>
+            <span *ngIf="lastName.errors?.['minlength']">Last name must be at least 3 characters</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="label">Email Address</label>
+        <input type="email" [(ngModel)]="user.email" name="email" #email="ngModel" class="input" 
+               [class.error]="email.invalid && email.touched" 
+               placeholder="Enter your email" required email>
+        <div *ngIf="email.invalid && email.touched" class="validation-error">
+          <span *ngIf="email.errors?.['required']">Email is required</span>
+          <span *ngIf="email.errors?.['email']">Please enter a valid email address</span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="label">Password</label>
+        <input type="password" [(ngModel)]="user.password" name="password" #password="ngModel" class="input" 
+               [class.error]="password.invalid && password.touched" 
+               placeholder="Create a password" required minlength="5">
+        <div *ngIf="password.invalid && password.touched" class="validation-error">
+          <span *ngIf="password.errors?.['required']">Password is required</span>
+          <span *ngIf="password.errors?.['minlength']">Password must be at least 5 characters</span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="label">Gender</label>
+        <select [(ngModel)]="user.sex" name="sex" #sex="ngModel" class="select" 
+                [class.error]="sex.invalid && sex.touched" required>
+          <option value="">Select gender</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+          <option value="O">Other</option>
+        </select>
+        <div *ngIf="sex.invalid && sex.touched" class="validation-error">
+          <span *ngIf="sex.errors?.['required']">Please select a gender</span>
+        </div>
+      </div>
+      
+      <button type="submit" [disabled]="registrationForm.invalid" class="submit-btn">
+        <span>Create Account</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+    
+    <div class="card-footer">
+      <p>Already have an account? <a href="#" class="link">Sign in</a></p>
+    </div>
+  </div>
+</div>
