@@ -1,0 +1,19 @@
+<div class="main-layout">
+      <header class="header">
+        <div class="container">
+          <h1 class="logo">🎫 FastTicket</h1>
+          <div class="header-actions">
+            @if(!isLogged){
+              <button class="btn-secondary" (click)="goToSignIn()">Sign In</button>
+            }@else {
+              <button class="btn-secondary" (click)="signOut()">Sign Out</button>
+            }
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="container">
+          <router-outlet></router-outlet>
+        </div>
+      </main>
+    </div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../core/models/user.model';
 import { UserService } from '../../core/user/user.service';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-user-registration',
@@ -26,7 +27,7 @@ export class UserRegistration {
     sex: ''
   };
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private router: Router) {}
 
   registerUser() {
     this.showError = false;
@@ -56,5 +57,10 @@ export class UserRegistration {
       lastName: '',
       sex: ''
     };
+  }
+
+  goToSignIn() {
+    console.log("paso")
+    this.router.navigate(['/signin']);
   }
 }

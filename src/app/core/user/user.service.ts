@@ -9,7 +9,7 @@ import { User } from '../models/user.model';
 export class UserService {
   private get apiUrl(): string {
     const config = (window as any).APP_CONFIG;
-    return config?.apiUrl || 'http://localhost:8080/v1';
+    return config?.apiUrl || 'http://localhost:8090/api/v1';
   }
 
   constructor(private http: HttpClient) {}
